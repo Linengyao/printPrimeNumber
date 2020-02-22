@@ -3,10 +3,65 @@
 
 #include "pch.h"
 #include <iostream>
+#include "stdlib.h"
+//#include "math.h"
 
+using namespace std;
+
+//素数判断
+int CheckPrimeNumber(int n)
+{
+	if (n == 2)
+	{
+		return 1;
+	}
+	else if (n <= 1)
+	{
+		return 0;  //负数和0，1不是素数
+	}
+	else
+	{
+		//排除偶数
+		if (n % 2 == 0)
+		{
+			return 0;
+		}
+		//对奇数进行判断
+		else
+		{		
+			for (int i = 3; i <= sqrt((double)n); i++)
+			{
+				if (n%i == 0)
+				{
+					return 0;
+				}
+			}
+			return 1;
+		}
+	}
+}
 int main()
 {
-    std::cout << "Hello World!\n"; 
+    //std::cout << "Hello World!\n"; 
+	//system("pause");
+	int num = 100;
+	int PrimeNubmerSum = 0;
+	for (int i = 0; i < 100; i++)
+	{
+		//素数判断
+		if (CheckPrimeNumber(i) == 1)
+		{
+			//打印素数
+			cout << "the number is:" << i << endl;
+			PrimeNubmerSum++;
+		}
+	}
+	//打印总数
+	cout << "the sum is:" << PrimeNubmerSum << endl;
+
+	system("pause");
+	return 0;
+
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
